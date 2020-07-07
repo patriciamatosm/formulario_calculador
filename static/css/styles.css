@@ -13,11 +13,6 @@
     padding:40vh 50vh;
 }
 
-
-li > a {
-    color: #ffffff !important;
-}
-
 .modal {
     overflow-y:auto;
 }

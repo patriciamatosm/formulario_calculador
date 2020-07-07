@@ -23,6 +23,8 @@
 
 
     <script src="../static/js/functions.js"></script>
+    <?php include "ver_contenido_tabla.php"; ?>
+
     <?php
     $host = 'localhost';
     $db = 'prueba_patri';
@@ -32,8 +34,8 @@
 
     $connection = "mysql:host=" . $host . ";dbname=" . $db . ";charset=" . $charset;
     $options = [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_EMULATE_PREPARES => false,
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_EMULATE_PREPARES => false,
     ];
     $pdo = new PDO($connection, $user, $password, $options);
 
@@ -75,7 +77,7 @@
 
                         <!-- EXCEL -->
                         <div class="offset-1 col-md-4">
-                            <div class="form-group">
+                            <div class="form-group text-center">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="inputGroupFileAddon01">BBDD</span>
@@ -94,11 +96,11 @@
                         </div>
 
                         <!-- CURVA DE TIPOS -->
-                        <div class="offset-3 col-md-4">
-                            <div class="form-group">
+                        <div class="offset-1 col-md-6">
+                            <div class="form-group text-center">
                                 <div class="dropdown">
                                     <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                            type="button">
+                                            type="button" id="nombre-tabla">
                                         Nombre de la tabla
                                     </button>
                                     <div class="dropdown-menu">
@@ -110,11 +112,29 @@
                                         }
                                         ?>
                                     </div>
+
+                                    <button type="button" class="btn btn-info btn-sm" id="ver" name="ver-btn">Ver
+                                    </button>
                                 </div>
+
                             </div>
                         </div>
 
 
+
+
+
+                    </div>
+
+
+                    <!-- N PROC -->
+                    <div class="form-group row">
+                        <div class="offset-5 col-xs-6">
+                            <div class="form-group">
+                                <label for="proc" id="n_proceso"> Número de proceso </label>
+                                <input class="form-control" disabled id="proc" name="proceso" type="password">
+                            </div>
+                        </div>
                     </div>
 
 

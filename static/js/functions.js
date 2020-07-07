@@ -1,5 +1,21 @@
 $(document).ready(function () {
+    var name;
     $('#form_calc').modal('show');
+
+
+
+    $('#ver').click(function () {
+        $('#form_calc').modal('hide');
+        $('#ver_columnas').modal('show');
+    });
+
+    $('.dropdown-menu a').on('click', function(){
+        name = $(this).text();
+        $('#nombre-tabla').text(name);
+    });
+
+
+
 });
 
 function fichero() {
