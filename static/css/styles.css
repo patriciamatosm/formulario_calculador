@@ -1,0 +1,29 @@
+.modal-header{
+    background: #3fbac2;
+    color: white;
+}
+
+#tituloIniciar {
+    color: white !important;
+    text-align: center !important;
+    padding-left: 2% !important;
+}
+
+.iniciar-sesion{
+    padding:40vh 50vh;
+}
+
+
+li > a {
+    color: #ffffff !important;
+}
+
+.modal {
+    overflow-y:auto;
+}
+
+#n_proceso {
+    display: block;
+    text-align: center;
+    line-height: 150%;
+}
