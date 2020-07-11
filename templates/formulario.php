@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Calculador </title>
-
+    <?php require_once(dirname( __DIR__ )."/templates/ver_contenido_tabla.php");?>
+    <?php require_once (dirname( __DIR__ ).'/static/php/db.php'); ?>
 
     <link href="../static/css/styles.css" rel="stylesheet">
 
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
 
-    <script crossorigin="anonymous"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script crossorigin="anonymous"
             integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
             src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -23,23 +23,13 @@
 
 
     <script src="../static/js/functions.js"></script>
-    <?php include "ver_contenido_tabla.php"; ?>
+
 
     <?php
-    $host = 'localhost';
-    $db = 'prueba_patri';
-    $user = 'root';
-    $password = "Pm15081999";
-    $charset = 'utf8mb4';
+    //insertar sql
+    $pdo = new Database();
 
-    $connection = "mysql:host=" . $host . ";dbname=" . $db . ";charset=" . $charset;
-    $options = [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_EMULATE_PREPARES => false,
-    ];
-    $pdo = new PDO($connection, $user, $password, $options);
-
-    $sql = $pdo->prepare('SELECT DISTINCT V_NOMBRETABLA FROM mae_curva_libre_riesgos');
+    $sql = $pdo->connect()->prepare('SELECT DISTINCT V_NOMBRETABLA FROM mae_curva_libre_riesgos');
     ?>
 
 
@@ -62,17 +52,19 @@
             <!-- body -->
             <div class="modal-body iniciar-sesion">
                 <form action="" id="form_c" method="post">
+
                     <!-- N PROC -->
+                    <!-- 1 row -->
                     <div class="form-group row">
                         <div class="offset-5 col-xs-6">
                             <div class="form-group">
                                 <label for="proc" id="n_proceso"> Número de proceso </label>
-                                <input class="form-control" disabled id="proc" name="proceso" type="password">
+                                <input class="form-control" disabled id="proc" name="proceso" type="text">
                             </div>
                         </div>
                     </div>
 
-
+                    <!-- 2 row -->
                     <div class="form-group row">
 
                         <!-- EXCEL -->
@@ -100,10 +92,10 @@
                             <div class="form-group text-center">
                                 <div class="dropdown">
                                     <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                            type="button" id="nombre-tabla">
+                                            type="button" id="nombre-tabla" aria-haspopup="true" aria-expanded="false">
                                         Nombre de la tabla
                                     </button>
-                                    <div class="dropdown-menu">
+                                    <div class="dropdown-menu" aria-labelledby="nombre-tabla">
                                         <?php
                                         $sql->execute();
                                         $data = $sql->fetchAll();
@@ -119,47 +111,51 @@
 
                             </div>
                         </div>
-
-
-
-
-
                     </div>
 
-
-                    <!-- N PROC -->
+                    <!-- 3 row -->
                     <div class="form-group row">
-                        <div class="offset-5 col-xs-6">
-                            <div class="form-group">
-                                <label for="proc" id="n_proceso"> Número de proceso </label>
-                                <input class="form-control" disabled id="proc" name="proceso" type="password">
+
+                        <!-- CUMPLIMIENTO FIJO -->
+                        <div class="col-md-4">
+                            <div class="form-group text-center">
+                                <label for="fijo" id="c_fijo"> Cumplimiento fijo </label>
+                                <input class="form-control" id="fijo" type="text">
+                            </div>
+                        </div>
+
+                        <!-- USUARIO CONECTADO -->
+                        <div class="col-md-4">
+                            <div class="form-group text-center">
+                                <label for="user" id="u_conectado"> Usuario conectado </label>
+                                <input class="form-control" id="user" type="text">
+                            </div>
+                        </div>
+
+                        <!-- CAMPO OBLIGATORIO -->
+                        <div class="col-md-4">
+                            <div class="form-group text-center">
+                                <label for="obl" id="obligatorio"> Campo obligatorio </label> <label style="color: red">
+                                    * </label>
+                                <input class="form-control" id="obl" type="text" required>
                             </div>
                         </div>
                     </div>
 
 
-                    <div class="form-group row">
-                        <label for="pwd" id="tit_pwd">
-                            <span class="glyphicon glyphicon-eye-close"></span> Contraseña</label>
-                        <input class="form-control" id="pwd" name="password" type="password">
-                    </div>
-                    <div class="form-group row">
-                        <button class="btn btn-success btn-block" type="submit"> Login</button>
-                    </div>
                 </form>
             </div>
 
             <!-- footer -->
             <div class="modal-footer">
-                <div class="container-fluid" id="sinCuenta">
-                    <p> No tienes cuenta?
-                        <a data-dismiss="modal" data-target="#registrar" data-toggle="modal" href="#" id="link1">
-                            Registrate</a></p>
-                    <button class="btn btn-default btn-cerrar" data-dismiss="modal"
-                            style="background: red; color: white"
-                            type="button">
-                        Cerrar
-                    </button>
+                <div class="container-fluid" id="botones-finalizar">
+                    <div class="form-group row">
+                        <div class="offset-5 col-xs-6">
+                            <button type="button" class="btn btn-danger btn-lg" id="rodar">Rodar</button>
+                            <button type="button" class="btn btn-success btn-lg" id="generar">Generar</button>
+                        </div>
+
+                    </div>
                 </div>
             </div>
 
