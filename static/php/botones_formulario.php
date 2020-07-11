@@ -1,5 +1,6 @@
 <?php
 
+include 'db.php';
 
 if(isset($_POST['action']) && !empty($_POST['action'])) {
     $action = $_POST['action'];
@@ -62,7 +63,6 @@ function generar($bbdd_excel, $curva_tipos, $cump_fijo, $usuario_conectado){
     //insertar sql
     $sql = $pdo->connect()->prepare('insert into a (number) values (102);');
 
-    //insertar sql
 
     $sql->execute();
     $data = $sql->fetchAll();

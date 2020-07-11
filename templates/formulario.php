@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Calculador </title>
     <?php require_once(dirname( __DIR__ )."/templates/ver_contenido_tabla.php");?>
-    <?php require_once (dirname( __DIR__ ).'/static/php/db.php'); ?>
+    <?php include_once (dirname( __DIR__ ).'/static/php/db.php'); ?>
 
     <link href="../static/css/styles.css" rel="stylesheet">
 

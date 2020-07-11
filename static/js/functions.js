@@ -52,7 +52,6 @@ $(document).ready(function () {
                 }
             );
 
-            alert("Response: " + r_text);
         }
     });
 
@@ -76,6 +75,7 @@ $(document).ready(function () {
                     usuario_conectado: usuario_conectado,
                     action: 'generar'
                 },
+                type: 'POST',
                 success: function (data) {
                     alert("might have worked generar: " + data);
                 }
