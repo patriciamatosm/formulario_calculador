@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +27,6 @@
 
 
     <?php
-    //insertar sql
     $pdo = new Database();
 
     $sql = $pdo->connect()->prepare('SELECT DISTINCT V_NOMBRETABLA FROM mae_curva_libre_riesgos');

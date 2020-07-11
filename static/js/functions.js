@@ -1,5 +1,11 @@
-
+/**
+ * Variables globales
+ */
 var usuario_conectado, curva_tipos, cump_fijo, bbdd_excel;
+
+/**
+ * DOC
+ */
 $(document).ready(function () {
     var name;
 
