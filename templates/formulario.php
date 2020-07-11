@@ -104,7 +104,7 @@
                                         }
                                         ?>
                                     </div>
-
+                                    <input type="hidden" id="selected" value=""/>
                                     <button type="button" class="btn btn-info btn-sm" id="ver" name="ver-btn">Ver
                                     </button>
                                 </div>

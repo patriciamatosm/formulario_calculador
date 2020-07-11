@@ -1,7 +1,7 @@
+
+var usuario_conectado, curva_tipos, cump_fijo, bbdd_excel;
 $(document).ready(function () {
     var name;
-    var usuario_conectado, curva_tipos, cump_fijo, bbdd_excel;
-    var r_text;
 
     /**
      * Mostrar modal
@@ -24,7 +24,7 @@ $(document).ready(function () {
         name = $(this).text();
         $('#nombre-tabla').text(name);
         $('#tituloModalVer').text(name);
-
+        $('#selected').value = name;
     });
 
     /**
@@ -65,21 +65,21 @@ $(document).ready(function () {
         //recolectamos datos
         if(recolectar_datos()){
             //--->Hacemos peticion para procesar
-
+            console.log(usuario_conectado + " c_tip: " + curva_tipos + " c_fi: " + cump_fijo + " exc: " + bbdd_excel);
             $.ajax({
+                type: 'POST',
                 url: "../static/php/botones_formulario.php",
                 data: {
-                    bbdd_excel: bbdd_excel,
-                    curva_tipos: curva_tipos,
-                    cump_fijo: cump_fijo,
-                    usuario_conectado: usuario_conectado,
-                    action: 'generar'
-                },
-                type: 'POST',
-                success: function (data) {
-                    alert("might have worked generar: " + data);
+                    'bbdd_excel': bbdd_excel,
+                    'curva_tipos': curva_tipos,
+                    'cump_fijo': cump_fijo,
+                    'usuario_conectado': usuario_conectado,
+                    'action': 'generar'
                 }
-            });
+            }).fail(function () {
+                    alert("ERRORRRRR");
+                }
+            );
         }
     });
 
@@ -108,7 +108,7 @@ function recolectar_datos() {
     bbdd_excel = $('#choose-file').text();
 
     //- Curva de tipos
-    curva_tipos = name;
+    curva_tipos = document.getElementById("nombre-tabla").innerHTML;
 
     //- Cumplimiento fijo
     cump_fijo = document.getElementById("fijo").value;
@@ -116,6 +116,7 @@ function recolectar_datos() {
     //- Usuario conectado (sesion)
     usuario_conectado = document.getElementById("user").value;
 
+    //console.log(usuario_conectado + " c_tip: " + curva_tipos + " c_fi: " + cump_fijo + " exc: " + bbdd_excel);
 
     return true;
 }
