@@ -44,7 +44,7 @@ $(document).ready(function () {
             //--->Hacemos peticion para procesar
 
             $.ajax({
-                url: "../static/php/botones_formulario.php",
+                url: "../includes/botones_formulario.php",
                 data: {
                     bbdd_excel: bbdd_excel,
                     curva_tipos: curva_tipos,
@@ -74,7 +74,7 @@ $(document).ready(function () {
             console.log(usuario_conectado + " c_tip: " + curva_tipos + " c_fi: " + cump_fijo + " exc: " + bbdd_excel);
             $.ajax({
                 type: 'POST',
-                url: "../static/php/botones_formulario.php",
+                url: "../includes/botones_formulario.php",
                 data: {
                     'bbdd_excel': bbdd_excel,
                     'curva_tipos': curva_tipos,
